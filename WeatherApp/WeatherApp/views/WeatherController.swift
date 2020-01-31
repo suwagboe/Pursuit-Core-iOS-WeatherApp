@@ -13,7 +13,6 @@ class WeatherController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .yellow
-        print(hiddenKey.apiKey)
     }
 
 
