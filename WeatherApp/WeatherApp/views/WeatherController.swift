@@ -28,30 +28,50 @@ class WeatherController: UIViewController {
 
 
 }
-//
-//extension WeatherController: UICollectionViewDataSource {
-//
-//
-//
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return 50
-//    }
-//
-//
-//     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//
-//        guard let cell = collectionView.dequeReusableCell(withReuseIdentifier: "weatherCell", for: indexPath)
-////            as? WeatherCell else {
-////            fatalError("couldn't deque into the other cell..")
-////        }
-//
-//        cell.backgroundColor = .magenta
-//        return cell
-//    }
-//
-//
-//}
 
-extension WeatherController: UICollectionViewDelegate {
+extension WeatherController: UICollectionViewDataSource {
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 50
+    }
+    
+     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "weatherCell", for: indexPath) as? WeatherCell else {
+            fatalError("couldn't deque into the other cell..")
+        }
+
+        cell.backgroundColor = .magenta
+        return cell
+    }
+
+}
+
+extension WeatherController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let maxSize: CGSize = UIScreen.main.bounds.size
+        
+        let itemWidth: CGFloat = maxSize.width * 0.95 // it is 95 percent of the device
+        
+        return CGSize(width: itemWidth, height: 80)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+      //  let selectedWeather =
+        
+        
+        
+    }
+    
     
 }
+
+
+
+
+
+
+
