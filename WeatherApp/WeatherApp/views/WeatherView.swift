@@ -9,13 +9,41 @@
 import UIKit
 
 class WeatherView: UIView {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+// set up the variables
+    public lazy var weatherColletion: UICollectionView = {
+        let collection = UICollectionView()
+        
+        return collection
+    }()
+    
+    override init(frame: CGRect){
+        super.init(frame: UIScreen.main.bounds)
+        
     }
-    */
+    
+    required init?(coder: NSCoder){
+        super.init(coder: coder)
+        
+    }
+    
+    private func commonInit(){
+        
+    }
+    
+    private func setUpCollectionView(){
+        addSubview(weatherColletion)
+        
+        weatherColletion.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+        //    weatherColletion.topAnchor = 
+        
+        ])
+        
+        
+        
+    }
+    
 
 }
+
