@@ -7,3 +7,9 @@
 //
 
 import Foundation
+import NetworkExtension
+
+struct WeatherAPIClient{
+//    static func getWeatherData(completion: @escaping(Result<[String], AppError>))
+//    
+}
