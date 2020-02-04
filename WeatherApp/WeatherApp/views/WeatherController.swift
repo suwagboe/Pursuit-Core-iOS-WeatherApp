@@ -32,7 +32,7 @@ class WeatherController: UIViewController {
             //ToDo: need to guard that they only entered numbers and that it is 4 digits
             // should I can the function here instead?
             // this should call the convertZipcode function because you need add the entered zipcode into the zipcode.. so once it has a value that function should get called.
-            convertTheZipcode(userEnteredText)
+            getTheZipcode(userEnteredText)
         }
     }
     
@@ -53,6 +53,7 @@ class WeatherController: UIViewController {
                 
         //WeatherViewInstance.weatherCollection.dataSource = self
         weatherViewInstance.weatherCollection.delegate = self
+        weatherViewInstance.weatherCollection.dataSource = self
         
         // this is registering the class for the cell... 0
         weatherViewInstance.weatherCollection.register(UINib(nibName: "WeatherCell", bundle: nil), forCellWithReuseIdentifier: "weatherCell")
@@ -76,9 +77,23 @@ class WeatherController: UIViewController {
                 // here I would assign the values
                 // MARK: why self here??
                 self.loadTheWeather(lat: Cooridnates.lat, long: Cooridnates.long)
-            
+              //  self.placeNamed = Cooridnates.pla
+               // self.placeNamed = Cooridnates.placeName
               //  self.longitudeFromZipcode = long.description
                 //self.latitudeFromZipcode = lat.description
+            }
+        })
+    }
+    
+    private func getTheZipcode(_ text: String) {
+        ZipCodeHelper.getLatLongName(fromZipCode: text, completionHandler: {
+            (result) in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let coordinates):
+                self.loadTheWeather(lat: coordinates.lat, long: coordinates.long)
+                self.placeNamed = coordinates.placeName
             }
         })
     }
@@ -92,6 +107,7 @@ class WeatherController: UIViewController {
                 print("\(error)")
             case .success(let data):
                 self.listOfWeatherInfo = data.daily.data
+                dump(data)
             }
         })
     }
@@ -134,7 +150,7 @@ extension WeatherController: UICollectionViewDataSource {
         let selectday = listOfWeatherInfo[indexPath.row]
         // ToDo: a configureCell() function that can be called here an apply everything
         cell.configureCell(with: selectday)
-        cell.backgroundColor = .yellow
+//        cell.backgroundColor = .yellow
         return cell
     }
 
@@ -148,7 +164,7 @@ extension WeatherController: UICollectionViewDelegateFlowLayout {
         
         let itemWidth: CGFloat = maxSize.width * 0.95 // it is 95 percent of the device
         
-        return CGSize(width: itemWidth, height: 80)
+        return CGSize(width: itemWidth, height: 300)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

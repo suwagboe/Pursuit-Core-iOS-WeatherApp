@@ -13,7 +13,8 @@ class WeatherView: UIView {
     public lazy var weatherCollection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 400, height: 400)
+       // layout.estimatedItemSize = CGSize(width: 100, height: 200)
+      //  layout.itemSize = CGSize(width: 400, height: 40)
         
         let collection = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         collection.backgroundColor = .magenta
@@ -116,7 +117,8 @@ class WeatherView: UIView {
             weatherCollection.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 70),
             weatherCollection.leadingAnchor.constraint(equalTo: leadingAnchor),
             weatherCollection.trailingAnchor.constraint(equalTo: trailingAnchor),
-            weatherCollection.heightAnchor.constraint(equalTo: heightAnchor, constant: -750)
+            weatherCollection.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5)
+//            weatherCollection.heightAnchor.constraint(equalTo: heightAnchor, constant: )
            ])
         
         }

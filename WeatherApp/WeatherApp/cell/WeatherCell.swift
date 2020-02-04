@@ -29,25 +29,13 @@ class WeatherCell: UICollectionViewCell {
         
         //MARK: what should the date be...
        // dateLabel.text = weatherInfo.daily.first.
-   
-        
-    weatherHighLabel.text = "High: \(weatherInfo.temperatureLow )"
+  // weatherHighLabel.text = "454"
+//        
+   weatherHighLabel.text = "High: \(weatherInfo.temperatureLow )"
     weatherLowLabel.text = "Low: \(weatherInfo.temperatureLow )"
         
         
-        weatherImageView.getImage(with: "") { [weak self]
-            (result) in
-            switch result {
-            case .failure:
-                DispatchQueue.main.async {
-                    self!.weatherImageView.image = UIImage(named: "exclamationmark-triangle")
-                }
-            case .success(let image):
-                DispatchQueue.main.async {
-                    self?.weatherImageView.image = image
-                }
-            }
-        }
+    weatherImageView.image = UIImage(named: weatherInfo.icon)
         
     }
     
