@@ -15,7 +15,8 @@ class WeatherController: UIViewController {
     
     // how to take in the input from the 
     
-    private var selectedWeather: WeatherSearch? {
+    private var listOfWeatherInfo = [ForcastData]() {
+        // this holds the the all the days in the weatherClient...
         didSet{
             DispatchQueue.main.async {
                 self.weatherViewInstance.weatherCollection.reloadData()
@@ -24,29 +25,32 @@ class WeatherController: UIViewController {
         }
     }
     
-    var longitudeFromZipcode = "37.8267"
-    var latitudeFromZipcode = "-122.4233"
     // need to figure out what the above zipCode is in order to make it the place holder.
     // the stuff the user typed in...
     private var userEnteredText = "" {
         didSet{
             //ToDo: need to guard that they only entered numbers and that it is 4 digits
-            weatherViewInstance.weatherCollection.reloadData()
+            // should I can the function here instead?
+            // this should call the convertZipcode function because you need add the entered zipcode into the zipcode.. so once it has a value that function should get called.
+            convertTheZipcode(userEnteredText)
         }
     }
+    
+    public var placeNamed: String?
     
     override func loadView() {
         view = weatherViewInstance
     }
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
+        userEnteredText = "10474"
+
         //view.backgroundColor = .systemBackground
         navigationItem.title = "Weather App"
         
         weatherViewInstance.textField.delegate = self
-        
+                
         //WeatherViewInstance.weatherCollection.dataSource = self
         weatherViewInstance.weatherCollection.delegate = self
         
@@ -63,26 +67,31 @@ class WeatherController: UIViewController {
             (result) in
             switch result {
             case .failure(let error):
+                print(error)
                 // here what would the failure be?? a alert for the user??
-                break
-            case .success(let lat, let long):
+//                DispatchQueue.main.async {
+//                         UIAlertAction(title: "zipcod Error", style: .default, handler: )
+//                }
+            case .success(let Cooridnates):
                 // here I would assign the values
                 // MARK: why self here??
-                self.longitudeFromZipcode = long.description
-                self.latitudeFromZipcode = lat.description
+                self.loadTheWeather(lat: Cooridnates.lat, long: Cooridnates.long)
+            
+              //  self.longitudeFromZipcode = long.description
+                //self.latitudeFromZipcode = lat.description
             }
         })
     }
     
-    private func loadTheWeather(){
+    private func loadTheWeather(lat: Double, long: Double){
        // using the place holder long and lat from the sample so that way when the app opens it wont be blank
-        WeatherAPIClient.getWeatherData(longitude: longitudeFromZipcode, latitude: latitudeFromZipcode, completion: {
+        WeatherAPIClient.getWeatherData(latitude: lat, longitude: long, completion: {
             (result) in
             switch result {
             case .failure(let error):
-                break
+                print("\(error)")
             case .success(let data):
-                self.selectedWeather = data
+                self.listOfWeatherInfo = data.daily.data
             }
         })
     }
@@ -108,7 +117,9 @@ extension WeatherController: UITextFieldDelegate {
 extension WeatherController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 50
+        //selectedWeather.count
+        //MARK: is my model right??
+        return listOfWeatherInfo.count
     }
     
      func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -116,7 +127,13 @@ extension WeatherController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "weatherCell", for: indexPath) as? WeatherCell else {
             fatalError("couldn't deque into the other cell..")
         }
-
+        
+        weatherViewInstance.weatherLabel.text = "The forcast for \(0) is below"
+          //weatherViewInstance.textFieldLabel.text = "The forcast for \(0) is below"
+        
+        let selectday = listOfWeatherInfo[indexPath.row]
+        // ToDo: a configureCell() function that can be called here an apply everything
+        cell.configureCell(with: selectday)
         cell.backgroundColor = .yellow
         return cell
     }
@@ -135,19 +152,20 @@ extension WeatherController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // function to transfer the data from the one that was selected... from this controller to the next one...
         
-      //  let selectedWeather =
+        let selectedWeather = listOfWeatherInfo[indexPath.row]
         
+        let dvcontroller = UIStoryboard(name: "", bundle: nil)
         
+        guard let dvc = dvcontroller.instantiateViewController(identifier: "DetailViewController") as? DetailViewController else {
+            fatalError("couldnt access the dvcontroller")
+        }
         
+         dvc.selectedDay = selectedWeather
+        
+        navigationController?.pushViewController(dvc, animated: true)
     }
     
     
 }
-
-
-
-
-
-
-

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ImageKit
 
 class WeatherCell: UICollectionViewCell {
     
@@ -17,5 +18,37 @@ class WeatherCell: UICollectionViewCell {
     @IBOutlet weak var weatherHighLabel: UILabel!
     
     @IBOutlet weak var weatherLowLabel: UILabel!
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+    }
+    
+   public func configureCell(with weatherInfo: ForcastData){
+        
+        //   let theData = weatherInfo.daily.first?.data
+        
+        //MARK: what should the date be...
+       // dateLabel.text = weatherInfo.daily.first.
+   
+        
+    weatherHighLabel.text = "High: \(weatherInfo.temperatureLow )"
+    weatherLowLabel.text = "Low: \(weatherInfo.temperatureLow )"
+        
+        
+        weatherImageView.getImage(with: "") { [weak self]
+            (result) in
+            switch result {
+            case .failure:
+                DispatchQueue.main.async {
+                    self!.weatherImageView.image = UIImage(named: "exclamationmark-triangle")
+                }
+            case .success(let image):
+                DispatchQueue.main.async {
+                    self?.weatherImageView.image = image
+                }
+            }
+        }
+        
+    }
     
 }

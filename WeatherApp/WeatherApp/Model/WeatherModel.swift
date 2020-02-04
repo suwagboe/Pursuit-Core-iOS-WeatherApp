@@ -8,21 +8,21 @@
 
 import Foundation
 
-struct WeatherSearch: Codable {
-    let latitude: String
-    let longitude: String
-    let timeZone: String
-    let daily: [Daily]
+struct WeatherModel: Codable {
+    let latitude: Double
+    let longitude: Double
+   // let timeZone: String
+    let daily: Daily // this is a dictionary
     
 }
 
 struct Daily: Codable {
     let icon: String
-    let data: [Data]
+    let data: [ForcastData]
 }
 
-struct Data: Codable {
-    let Summary: String
+struct ForcastData: Codable {
+   // let Summary: String
     let temperatureHigh: Double
     let temperatureLow: Double
 }

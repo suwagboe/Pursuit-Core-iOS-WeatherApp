@@ -10,8 +10,8 @@ import Foundation
 import NetworkHelper
 
 struct WeatherAPIClient{
-    static func getWeatherData(longitude: String, latitude: String,completion: @escaping (Result<WeatherSearch, AppError>) -> ()){
-        let endpointURL = "https://api.darksky.net/forecast/5d15deeb79b991c4303c8146faa47821/\(longitude),\(latitude)"
+    static func getWeatherData(latitude: Double,longitude: Double,completion: @escaping (Result<WeatherModel, AppError>) -> ()){
+        let endpointURL = "https://api.darksky.net/forecast/5d15deeb79b991c4303c8146faa47821/\(latitude),\(longitude)"
 
         
         guard let url = URL(string: endpointURL) else {
@@ -29,7 +29,9 @@ struct WeatherAPIClient{
             case .success(let data):
                 do {
                     //MARK: TODO: I need a do catch here because the code wouldnt let me do it otherwise but I dont really understand WHY?
-                    let result = try JSONDecoder().decode(WeatherSearch.self, from: data)
+                    // when something is thrown it has to be caught.. the data is being thrown. 
+                    // still need to access the lat and longitude
+                    let result = try JSONDecoder().decode(WeatherModel.self, from: data)
                     completion(.success(result))
                 } catch {
                     completion(.failure(.decodingError(error)))
