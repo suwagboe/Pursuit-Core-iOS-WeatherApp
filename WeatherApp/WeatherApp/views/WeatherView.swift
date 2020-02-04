@@ -16,8 +16,15 @@ class WeatherView: UIView {
         layout.itemSize = CGSize(width: 400, height: 400)
         
         let collection = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-        collection.backgroundColor = .blue
+        collection.backgroundColor = .magenta
         return collection
+    }()
+    
+    public lazy var textField: UITextField = {
+        let text = UITextField()
+        text.placeholder = "please input a zipcode here"
+        text.backgroundColor = .blue
+        return text
     }()
     
     override init(frame: CGRect){
@@ -32,6 +39,23 @@ class WeatherView: UIView {
     
     private func commonInit(){
         setUpCollectionView()
+        setUpTextField()
+    }
+    private func setUpTextField(){
+        
+        addSubview(textField)
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            // will this place it 40 down from the top...
+          //  textField.topAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 0.90 ),
+         //   textField.widthAnchor.constraint(equalTo: widthAnchor, constant: 0.5)
+            textField.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 0.25),
+            textField.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 0.25)
+            //textField.bottomAnchor
+       
+        
+        ])
     }
     
     private func setUpCollectionView(){
@@ -39,18 +63,19 @@ class WeatherView: UIView {
         
         weatherCollection.translatesAutoresizingMaskIntoConstraints = false
         
+        //weatherCollection.anchor(top: weatherCollection.safeAreaLayoutGuide.topAnchor, leading: weatherCollection.safeAreaLayoutGuide.leadingAnchor, bottom: weatherCollection.safeAreaLayoutGuide.bottomAnchor, trailing: weatherCollection.safeAreaLayoutGuide.trailingAnchor)
+        
         NSLayoutConstraint.activate([
             weatherCollection.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             weatherCollection.leadingAnchor.constraint(equalTo: leadingAnchor),
-            weatherCollection.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
-            weatherCollection.trailingAnchor.constraint(equalTo: trailingAnchor)
-        
-        ])
-        
+            weatherCollection.trailingAnchor.constraint(equalTo: trailingAnchor),
+            weatherCollection.heightAnchor.constraint(equalTo: heightAnchor, constant: -750)
+           ])
         
         
-    }
+        }
     
 
 }
+
 

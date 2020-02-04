@@ -12,12 +12,21 @@ class WeatherController: UIViewController {
     
     let WeatherViewInstance = WeatherView()
     
+    // how to take in the input from the 
+    
     private var selectedWeather: String?
+    
+    override func loadView() {
+        view = WeatherViewInstance
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        //view.backgroundColor = .systemBackground
         navigationItem.title = "Weather App"
+        
+        WeatherViewInstance.textField.delegate = self
         
         //WeatherViewInstance.weatherCollection.dataSource = self
         WeatherViewInstance.weatherCollection.delegate = self
@@ -25,8 +34,17 @@ class WeatherController: UIViewController {
         // this is registering the class for the cell... 0
         WeatherViewInstance.weatherCollection.register(UINib(nibName: "WeatherCell", bundle: nil), forCellWithReuseIdentifier: "weatherCell")
     }
+    
+    private func convertTheZipcode(_ text: UITextField){
+        
+    }
 
 
+}
+extension WeatherController: UITextFieldDelegate {
+    
+    
+    
 }
 
 extension WeatherController: UICollectionViewDataSource {
@@ -41,7 +59,7 @@ extension WeatherController: UICollectionViewDataSource {
             fatalError("couldn't deque into the other cell..")
         }
 
-        cell.backgroundColor = .magenta
+        cell.backgroundColor = .yellow
         return cell
     }
 
