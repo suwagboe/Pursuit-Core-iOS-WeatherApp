@@ -48,11 +48,11 @@ class WeatherView: UIView {
         
         NSLayoutConstraint.activate([
             // will this place it 40 down from the top...
-          //  textField.topAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 0.90 ),
+            textField.topAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -600 ),
          //   textField.widthAnchor.constraint(equalTo: widthAnchor, constant: 0.5)
-            textField.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 0.25),
-            textField.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 0.25)
-            //textField.bottomAnchor
+            textField.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 100),
+            textField.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -100),
+         //   textField.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 300)
        
         
         ])
@@ -71,7 +71,6 @@ class WeatherView: UIView {
             weatherCollection.trailingAnchor.constraint(equalTo: trailingAnchor),
             weatherCollection.heightAnchor.constraint(equalTo: heightAnchor, constant: -750)
            ])
-        
         
         }
     
