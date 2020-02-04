@@ -23,6 +23,7 @@ class WeatherView: UIView {
     public lazy var textField: UITextField = {
         let text = UITextField()
         text.placeholder = "zipcode"
+      //  text.placeholderRect(forBounds: CGRect(0)) I want to center the place holder text. 
         text.backgroundColor = .blue
         return text
     }()
