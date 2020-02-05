@@ -57,9 +57,13 @@ class WeatherController: UIViewController {
         
         // this is registering the class for the cell... 0
         weatherViewInstance.weatherCollection.register(UINib(nibName: "WeatherCell", bundle: nil), forCellWithReuseIdentifier: "weatherCell")
+        
+     //   view.backgroundColor = 
     }
     
     private func convertTheZipcode(_ text: String){
+        // MARK: TODO - need to store the zipcode using UserDefaults.
+        
         // this will have to return something.. can you return more than one thing
         // convert the inputed String from the textField into latitude and longitude.
         //???????
@@ -144,11 +148,13 @@ extension WeatherController: UICollectionViewDataSource {
             fatalError("couldn't deque into the other cell..")
         }
         
-        weatherViewInstance.weatherLabel.text = "The forcast for \(0) is below"
           //weatherViewInstance.textFieldLabel.text = "The forcast for \(0) is below"
         
         let selectday = listOfWeatherInfo[indexPath.row]
         // ToDo: a configureCell() function that can be called here an apply everything
+        
+        weatherViewInstance.weatherLabel.text = "The forcast for \(placeNamed ?? "niyas word") is below"
+
         cell.configureCell(with: selectday)
 //        cell.backgroundColor = .yellow
         return cell
@@ -164,7 +170,7 @@ extension WeatherController: UICollectionViewDelegateFlowLayout {
         
         let itemWidth: CGFloat = maxSize.width * 0.95 // it is 95 percent of the device
         
-        return CGSize(width: itemWidth, height: 300)
+        return CGSize(width: itemWidth, height: 150)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -172,13 +178,14 @@ extension WeatherController: UICollectionViewDelegateFlowLayout {
         
         let selectedWeather = listOfWeatherInfo[indexPath.row]
         
-        let dvcontroller = UIStoryboard(name: "", bundle: nil)
+        let dvcontroller = UIStoryboard(name: "DetailController", bundle: nil)
         
         guard let dvc = dvcontroller.instantiateViewController(identifier: "DetailViewController") as? DetailViewController else {
             fatalError("couldnt access the dvcontroller")
         }
         
          dvc.selectedDay = selectedWeather
+        dvc.nameLabel = placeNamed
         
         navigationController?.pushViewController(dvc, animated: true)
     }

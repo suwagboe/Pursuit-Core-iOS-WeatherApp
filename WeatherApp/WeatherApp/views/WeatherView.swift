@@ -43,7 +43,7 @@ class WeatherView: UIView {
         let label = UILabel()
         label.text = "The weather this area is..."
         
-        label.textColor = .green
+        label.textColor = .black
         return label
     }()
     
@@ -84,7 +84,7 @@ class WeatherView: UIView {
         weatherLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            weatherLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
+            weatherLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10),
                 //weatherLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 60),
              //  weatherLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -45)
             weatherLabel.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor)
@@ -114,10 +114,10 @@ class WeatherView: UIView {
         weatherCollection.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            weatherCollection.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 70),
+            weatherCollection.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0),
             weatherCollection.leadingAnchor.constraint(equalTo: leadingAnchor),
             weatherCollection.trailingAnchor.constraint(equalTo: trailingAnchor),
-            weatherCollection.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5)
+            weatherCollection.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25)
 //            weatherCollection.heightAnchor.constraint(equalTo: heightAnchor, constant: )
            ])
         
