@@ -73,9 +73,6 @@ class DetailViewController: UIViewController {
             self.inchesOfPercip.text = "There will be \(info.precipType ?? "!!!!") inches of rain" //MARK: This one isnt working!!!!!
             self.lowLabel.text = "The low temp is: \(info.temperatureLow)"
             self.highLabel.text = "The high temp for today is: \(info.temperatureHigh?.description ?? "not available")"
-                   
-                   
-                   
             self.imageView.getImage(with: self.actualImageURL ?? "newyork", completion: {
                        [weak self]
                        (result) in
@@ -87,8 +84,8 @@ class DetailViewController: UIViewController {
                            }
                        case .success(let image):
                            DispatchQueue.main.async {
-                               self?.imageView.image = image
-                           }
+                            self?.imageView.image = image
+                        }
                        }
                    })
         }
