@@ -11,9 +11,9 @@ import NetworkHelper
 
 struct PhotosAPIClient {
     
-    static func getPhotos(placeName: String, completion: @escaping (Result<AllPhotos, AppError>)->()){
-        let enpointURL = "https://pixabay.com/api/?key=14936493-14936493-906bcb5446b6ffd582095b08b&q=\(String(describing: placeName.lowercased))&image_type=photo&pretty=true"
-        
+    static func getLargePhotoLink(placeName: String, completion: @escaping (Result< [AllPhotos], AppError>)->()){
+        let enpointURL = "https://pixabay.com/api/?key=14936493-906bcb5446b6ffd582095b08b&qnewYork&image_type=photo&pretty=true"
+        //"https://pixabay.com/api/?key=14936493-14936493-906bcb5446b6ffd582095b08b&q=\( placeName))&image_type=photo&pretty=true
         guard let url = URL(string: enpointURL) else {
             completion(.failure(.badURL(enpointURL)))
             return

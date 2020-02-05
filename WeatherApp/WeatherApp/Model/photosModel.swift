@@ -9,7 +9,7 @@
 import Foundation
 
 struct Photos: Codable {
-    let hits: AllPhotos
+    let hits: [AllPhotos]
 }
 
 struct AllPhotos: Codable {

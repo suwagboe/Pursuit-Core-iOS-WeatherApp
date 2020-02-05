@@ -13,6 +13,7 @@
 		548CE05E234D33B600B5177D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 548CE05C234D33B600B5177D /* LaunchScreen.storyboard */; };
 		548CE066234D33E600B5177D /* ZipCodeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548CE065234D33E600B5177D /* ZipCodeHelper.swift */; };
 		548CE068234D340700B5177D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 548CE067234D340700B5177D /* Assets.xcassets */; };
+		5556CD2523EB20CA006F6180 /* ActualImageAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5556CD2423EB20CA006F6180 /* ActualImageAPIClient.swift */; };
 		55731F6323EA037200674F2B /* PhotosAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55731F6223EA037200674F2B /* PhotosAPIClient.swift */; };
 		55731F6523EA061400674F2B /* photosModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55731F6423EA061400674F2B /* photosModel.swift */; };
 		55853AB023E8BE02008C8B86 /* exampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55853AAF23E8BE02008C8B86 /* exampleData.swift */; };
@@ -52,6 +53,7 @@
 		548CE05F234D33B600B5177D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		548CE065234D33E600B5177D /* ZipCodeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipCodeHelper.swift; sourceTree = "<group>"; };
 		548CE067234D340700B5177D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5556CD2423EB20CA006F6180 /* ActualImageAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActualImageAPIClient.swift; sourceTree = "<group>"; };
 		55731F6223EA037200674F2B /* PhotosAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosAPIClient.swift; sourceTree = "<group>"; };
 		55731F6423EA061400674F2B /* photosModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = photosModel.swift; sourceTree = "<group>"; };
 		55853AAF23E8BE02008C8B86 /* exampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = exampleData.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 		55AD5FB423E4FBDE00748EFB /* APIClients */ = {
 			isa = PBXGroup;
 			children = (
+				5556CD2423EB20CA006F6180 /* ActualImageAPIClient.swift */,
 				55731F6223EA037200674F2B /* PhotosAPIClient.swift */,
 				55AD5FAC23E4F9A500748EFB /* WeatherAPIClient.swift */,
 				55E6997D23E6245A00D8DCE1 /* AppError.swift */,
@@ -328,6 +331,7 @@
 				55B7A05223E4CDE5002382FF /* File.swift in Sources */,
 				55E6997E23E6245A00D8DCE1 /* AppError.swift in Sources */,
 				548CE066234D33E600B5177D /* ZipCodeHelper.swift in Sources */,
+				5556CD2523EB20CA006F6180 /* ActualImageAPIClient.swift in Sources */,
 				55AD5FAD23E4F9A500748EFB /* WeatherAPIClient.swift in Sources */,
 				55A4053C23EA41A7003EF1E1 /* PersistenceHelper.swift in Sources */,
 				548CE056234D33B500B5177D /* WeatherController.swift in Sources */,

@@ -30,11 +30,36 @@ class DetailViewController: UIViewController {
     var selectedDay: ForcastData?
     
     var nameLabel : String?
+    
+    var actualImageURL : String?
+      
     override func viewDidLoad() {
         super.viewDidLoad()
-configreDetailController()
+        
+        
+        getLargeImageString(name: nameLabel!)
+
+        //getLargeImageString(name: nameLabel!)
         //view.backgroundColor I want it to be a red forcast...
     }
+    
+    private func getLargeImageString(name: String){
+        // reassigns the variable to get the image string here...
+        
+        PhotosAPIClient.getLargePhotoLink(placeName: name, completion: {
+            (result) in
+            switch result{
+            case .failure(let appError):
+                print(appError)
+            case .success(let AccessingAllPhotos):
+                let largeImageURL = AccessingAllPhotos[0].largeImageURL
+                self.actualImageURL = largeImageURL
+                self.configreDetailController()
+            }
+        })
+        
+    }
+    
     
     func configreDetailController(){
         
@@ -43,27 +68,33 @@ configreDetailController()
         }
         
      //   mainLabel.text = nameLabel
-        sunriseLabel.text = " Sunrise time is: \(info.sunsetTime)"
-        windSpeedLabel.text = "The wind speed is: \(info.windSpeed)"
-        inchesOfPercip.text = "There will be \(info.precipType?.description ?? "0") inches of rain"
-        lowLabel.text = "The low temp is: \(info.temperatureLow)"
-        highLabel.text = "The high temp for today is: \(info.temperatureHigh?.description ?? "not available")"
-        
-        imageView.getImage(with: nameLabel ?? "newyork", completion: {
-            [weak self]
-            (result) in
-            switch result {
-            case .failure:
-                DispatchQueue.main.async {
-                    // need to reference self because I am inside of the dispatch queue accessing the main break..
-                    self!.imageView.image = UIImage(named: "exclamationmark-triangle")
-                }
-            case .success(let image):
-                DispatchQueue.main.async {
-                    self!.imageView.image = image
-                }
-            }
-        })
+        DispatchQueue.main.async {
+            self.sunSetLabel.text = "The sun set time will be \(info.sunsetTime)"
+            self.sunriseLabel.text = " Sunrise time is: \(info.sunsetTime)"
+            self.windSpeedLabel.text = "The wind speed is: \(info.windSpeed)"
+            self.inchesOfPercip.text = "There will be \(info.precipType ?? "!!!!") inches of rain" //MARK: This one isnt working!!!!!
+            self.lowLabel.text = "The low temp is: \(info.temperatureLow)"
+            self.highLabel.text = "The high temp for today is: \(info.temperatureHigh?.description ?? "not available")"
+                   
+                   
+                   
+            self.imageView.getImage(with: self.actualImageURL ?? "newyork", completion: {
+                       [weak self]
+                       (result) in
+                       switch result {
+                       case .failure:
+                           DispatchQueue.main.async {
+                               // need to reference self because I am inside of the dispatch queue accessing the main break..
+                               self?.imageView.image = UIImage(named: "exclamationmark.icloud")
+                           }
+                       case .success(let image):
+                           DispatchQueue.main.async {
+                               self?.imageView.image = image
+                           }
+                       }
+                   })
+        }
+       
     
 }
     
