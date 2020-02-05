@@ -62,13 +62,11 @@ class DetailViewController: UIViewController {
     
     
     func configreDetailController(){
-        
         guard let info = selectedDay else {
             return
         }
-        
-     //   mainLabel.text = nameLabel
-        DispatchQueue.main.async {
+        mainLabel.text = "The details about \(nameLabel ?? "Shaniya's World") weather is:"
+                DispatchQueue.main.async {
             self.sunSetLabel.text = "The sun set time will be \(info.sunsetTime)"
             self.sunriseLabel.text = " Sunrise time is: \(info.sunsetTime)"
             self.windSpeedLabel.text = "The wind speed is: \(info.windSpeed)"
