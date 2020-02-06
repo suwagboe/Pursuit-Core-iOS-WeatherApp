@@ -8,11 +8,11 @@
 
 import Foundation
 
-struct Photos: Codable {
-    let hits: [AllPhotos]
+struct AllPhotos: Codable {
+    let hits: [APhoto]
 }
 
-struct AllPhotos: Codable {
+struct APhoto: Codable {
     let largeImageURL : String
 }
 

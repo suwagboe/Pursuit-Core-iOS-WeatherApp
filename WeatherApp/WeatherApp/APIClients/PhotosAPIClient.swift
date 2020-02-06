@@ -11,7 +11,7 @@ import NetworkHelper
 
 struct PhotosAPIClient {
     
-    static func getLargePhotoLink(placeName: String, completion: @escaping (Result< [AllPhotos], AppError>)->()){
+    static func getLargePhotoLink(placeName: String, completion: @escaping (Result< [APhoto], AppError>)->()){
         let enpointURL = "https://pixabay.com/api/?key=14936493-906bcb5446b6ffd582095b08b&qnewYork&image_type=photo&pretty=true"
         //"https://pixabay.com/api/?key=14936493-14936493-906bcb5446b6ffd582095b08b&q=\( placeName))&image_type=photo&pretty=true
         guard let url = URL(string: enpointURL) else {
@@ -31,7 +31,7 @@ struct PhotosAPIClient {
                 do{
 //                    let result = try JSONDecoder().decode([AllPhotos].self, from: data)
 //                    completion(.success(result)) // this cant work because you have to go from top to bottom inside to outside when working with the model
-                     let result = try JSONDecoder().decode(Photos.self, from: data)
+                     let result = try JSONDecoder().decode(AllPhotos.self, from: data)
                    completion(.success(result.hits))
 
                     // need access to photos to go into hits

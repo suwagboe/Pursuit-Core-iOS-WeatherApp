@@ -22,7 +22,7 @@ class PersistenceHelper {
     // MARK: first question about persisting...
     // should this be for the main level or the level under  it.
     // like is it based on what we wanna persist or it is best to make it that everything is being persisted...
-    private static var image = [AllPhotos]()
+    private static var persistedImages = [APhoto]()
     
     //the place it should be stored...
     static let fileName = "images.plist"
@@ -30,12 +30,51 @@ class PersistenceHelper {
     // CRUD method
     
     //MARK: why are things marked private static func again??
-    private static func saveHeartedImage(){
+    private static func saveHeartedImage() throws{
         // we are only saving it because someone has heart it...
         
-      //  let url = FileManager.path
+        let url = FileManager.PathToDocumentsDirectorty(with: fileName)
+        
+        do{
+            let data = try PropertyListEncoder().encode(persistedImages)
+            try data.write(to: url, options: .atomic)
+        }catch {
+            throw DataPersistenceError.savingError(error)
+        }
     }
     
+    static func savePhotoTothePersisenceArrayAbove(photo: APhoto) throws{
+        
+        persistedImages.append(photo)
+        
+        do{
+            try saveHeartedImage()
+        }catch{
+            throw DataPersistenceError.savingError(error)
+        }
+        
+    }
+    
+    static func loadPersistedPhotos() throws -> [APhoto]{
+        let url = FileManager.PathToDocumentsDirectorty(with: fileName)
+        
+        if FileManager.default.fileExists(atPath: url.path){
+            if let data = FileManager.default.contents(atPath: url.path){
+                do {
+                    persistedImages = try PropertyListDecoder().decode([APhoto].self, from: data)
+                } catch {
+                    throw DataPersistenceError.decodingError(error)
+                }
+               
+            }  else {
+                               throw DataPersistenceError.noData
+                           }
+        } else {
+            throw DataPersistenceError.fileDoesNotExist(fileName)
+        }
+        return persistedImages
+        
+    }
     
     
     
