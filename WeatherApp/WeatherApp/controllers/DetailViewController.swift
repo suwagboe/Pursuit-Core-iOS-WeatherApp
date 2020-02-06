@@ -44,7 +44,6 @@ class DetailViewController: UIViewController {
         
         getLargeImageString(name: nameLabel!)
 
-        //getLargeImageString(name: nameLabel!)
         //view.backgroundColor I want it to be a red forcast...
         let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
         tap.numberOfTapsRequired = 2
@@ -53,7 +52,11 @@ class DetailViewController: UIViewController {
     
     @objc func doubleTapped() {
         pulsatingAnimationAndScale()
-
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5){
+            self.goToFavsController()
+        }
+        
     }
     
     @IBAction func favsbutton(_ sender: UIButton) {
@@ -64,8 +67,7 @@ class DetailViewController: UIViewController {
         heartButton.tintColor = .red
         heartButton.isHidden = false
                UIView.animate(withDuration: 1.5, delay: 0.0, options: [], animations: {
-                   // this is a 3rd of a second
-                              // any transform value of 1.0 represents the identity of the view..
+              
                               self.heartButton.transform = CGAffineTransform(scaleX: 10.0, y: 10.0)
                               self.heartButton.alpha = 0.0
             
@@ -105,13 +107,13 @@ class DetailViewController: UIViewController {
         })
         
     }
+    
     func configreDetailController(){
         guard let info = selectedDay else {
             return
         }
                 DispatchQueue.main.async {
                     self.mainLabel.text = "Double tap the image if you love the photo... to make it a fav"
-                    //"The details about \(self.nameLabel ?? "Shaniya's World") weather is:"
             self.sunSetLabel.text = "The sun set time will be \(info.sunsetTime)"
             self.sunriseLabel.text = " Sunrise time is: \(info.sunsetTime)"
             self.windSpeedLabel.text = "The wind speed is: \(info.windSpeed)"
@@ -134,8 +136,6 @@ class DetailViewController: UIViewController {
                        }
                    })
         }
-       
-    
 }
     
     
