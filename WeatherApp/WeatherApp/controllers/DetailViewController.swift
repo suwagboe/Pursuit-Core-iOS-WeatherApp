@@ -60,6 +60,7 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func favsbutton(_ sender: UIButton) {
+        //MARK: why when it segues does it not show the tab bar...
         goToFavsController()
     }
     
@@ -67,33 +68,26 @@ class DetailViewController: UIViewController {
         heartButton.tintColor = .red
         heartButton.isHidden = false
                UIView.animate(withDuration: 1.5, delay: 0.0, options: [], animations: {
-              
                               self.heartButton.transform = CGAffineTransform(scaleX: 10.0, y: 10.0)
                               self.heartButton.alpha = 0.0
-            
                    }) { (done) in
                        UIView.animate(withDuration: 0.05)
                        {
                            self.heartButton.isHidden = false
                            self.heartButton.layer.cornerRadius = self.heartButton.bounds.size.width / 2.0
                        }
-                       
                    }
     }
     
     
     
     private func goToFavsController(){
-        
         let favsVC = FavoritesViewController()
-        
         navigationController?.pushViewController(favsVC, animated: true)
-        
     }
     
     private func getLargeImageString(name: String){
         // reassigns the variable to get the image string here...
-        
         PhotosAPIClient.getLargePhotoLink(placeName: name, completion: {
             (result) in
             switch result{
@@ -105,7 +99,6 @@ class DetailViewController: UIViewController {
                 self.configreDetailController()
             }
         })
-        
     }
     
     func configreDetailController(){
