@@ -11,7 +11,7 @@ import UIKit
 class DetailViewController: UIViewController {
     
     
-    @IBOutlet weak var favsController: UIButton!
+    @IBOutlet weak var heartButton: UIButton!
     
     @IBOutlet weak var imageView: UIImageView!
     
@@ -39,11 +39,54 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // hids the button
+        heartButton.isHidden = true
         
         getLargeImageString(name: nameLabel!)
 
         //getLargeImageString(name: nameLabel!)
         //view.backgroundColor I want it to be a red forcast...
+        let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
+        tap.numberOfTapsRequired = 2
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func doubleTapped() {
+        pulsatingAnimationAndScale()
+
+    }
+    
+    @IBAction func favsbutton(_ sender: UIButton) {
+        goToFavsController()
+    }
+    
+    private func pulsatingAnimationAndScale(){
+        heartButton.tintColor = .red
+        heartButton.isHidden = false
+               UIView.animate(withDuration: 1.5, delay: 0.0, options: [], animations: {
+                   // this is a 3rd of a second
+                              // any transform value of 1.0 represents the identity of the view..
+                              self.heartButton.transform = CGAffineTransform(scaleX: 10.0, y: 10.0)
+                              self.heartButton.alpha = 0.0
+            
+                   }) { (done) in
+                       UIView.animate(withDuration: 0.05)
+                       {
+                           self.heartButton.isHidden = false
+                           self.heartButton.layer.cornerRadius = self.heartButton.bounds.size.width / 2.0
+                       }
+                       
+                   }
+    }
+    
+    
+    
+    private func goToFavsController(){
+        
+        let favsVC = FavoritesViewController()
+        
+        navigationController?.pushViewController(favsVC, animated: true)
+        
     }
     
     private func getLargeImageString(name: String){
@@ -67,7 +110,8 @@ class DetailViewController: UIViewController {
             return
         }
                 DispatchQueue.main.async {
-                    self.mainLabel.text = "The details about \(self.nameLabel ?? "Shaniya's World") weather is:"
+                    self.mainLabel.text = "Double tap the image if you love the photo... to make it a fav"
+                    //"The details about \(self.nameLabel ?? "Shaniya's World") weather is:"
             self.sunSetLabel.text = "The sun set time will be \(info.sunsetTime)"
             self.sunriseLabel.text = " Sunrise time is: \(info.sunsetTime)"
             self.windSpeedLabel.text = "The wind speed is: \(info.windSpeed)"
@@ -93,18 +137,6 @@ class DetailViewController: UIViewController {
        
     
 }
-    
-    
-    @IBAction func makeItAFavorite(_ sender: UIButton) {
-        
-        // persist the info... 
-        
-        
-    }
-    
-    
-    
-    
     
     
 }
