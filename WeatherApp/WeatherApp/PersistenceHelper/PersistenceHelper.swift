@@ -22,15 +22,20 @@ class PersistenceHelper {
     // MARK: first question about persisting...
     // should this be for the main level or the level under  it.
     // like is it based on what we wanna persist or it is best to make it that everything is being persisted...
-    private static var weather = [Daily]()
+    private static var image = [AllPhotos]()
     
     //the place it should be stored...
-    static let fileName = "weather.plist"
+    static let fileName = "images.plist"
     
     // CRUD method
     
     //MARK: why are things marked private static func again??
-   // private static func saveItem
+    private static func saveHeartedImage(){
+        // we are only saving it because someone has heart it...
+        
+      //  let url = FileManager.path
+    }
+    
     
     
     
