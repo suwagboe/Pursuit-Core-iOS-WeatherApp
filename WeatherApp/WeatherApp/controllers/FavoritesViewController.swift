@@ -12,13 +12,19 @@ class FavoritesViewController: UIViewController {
     
     private let favsViewInstance = FavsView()
     
+    private var theSavedPhotos = [APhoto](){
+        didSet{
+            favsViewInstance.fCollection.reloadData()
+        }
+    }
+    
     override func loadView() {
         view = favsViewInstance
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        loadPersistedStuff()
         favsViewInstance.fCollection.delegate = self
         favsViewInstance.fCollection.dataSource = self
         view.backgroundColor = .yellow
@@ -26,13 +32,23 @@ class FavoritesViewController: UIViewController {
     favsViewInstance.fCollection.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "fCell")
     }
     
+    private func loadPersistedStuff(){
+        
+        do {
+            try theSavedPhotos = PersistenceHelper.loadPersistedPhotos()
+        } catch {
+            print("errors: \(error)")
+        }
+    }
+    
+    
+    
 }
 
 extension FavoritesViewController: UICollectionViewDataSource{
     
     // amount of cell
     // what is the cell
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 50
     }
@@ -40,6 +56,8 @@ extension FavoritesViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "fCell", for: indexPath)
+        
+        
         
         cell.backgroundColor = .blue
         return cell
