@@ -10,6 +10,9 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
+    
+    @IBOutlet weak var favsController: UIButton!
+    
     @IBOutlet weak var imageView: UIImageView!
     
     @IBOutlet weak var mainLabel: UILabel!
@@ -59,14 +62,12 @@ class DetailViewController: UIViewController {
         })
         
     }
-    
-    
     func configreDetailController(){
         guard let info = selectedDay else {
             return
         }
-        mainLabel.text = "The details about \(nameLabel ?? "Shaniya's World") weather is:"
                 DispatchQueue.main.async {
+                    self.mainLabel.text = "The details about \(self.nameLabel ?? "Shaniya's World") weather is:"
             self.sunSetLabel.text = "The sun set time will be \(info.sunsetTime)"
             self.sunriseLabel.text = " Sunrise time is: \(info.sunsetTime)"
             self.windSpeedLabel.text = "The wind speed is: \(info.windSpeed)"
@@ -92,6 +93,18 @@ class DetailViewController: UIViewController {
        
     
 }
+    
+    
+    @IBAction func makeItAFavorite(_ sender: UIButton) {
+        
+        // persist the info... 
+        
+        
+    }
+    
+    
+    
+    
     
     
 }

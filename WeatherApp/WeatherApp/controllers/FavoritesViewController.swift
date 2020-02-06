@@ -1,5 +1,5 @@
 //
-//  TabController.swift
+//  FavoritesViewController.swift
 //  WeatherApp
 //
 //  Created by Pursuit on 2/4/20.
@@ -8,19 +8,13 @@
 
 import UIKit
 
-class TabController: UITabBarController {
-    
-    // need two controllers... 
+class FavoritesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
-        
-        
+        view.backgroundColor = .yellow
     }
- 
     
-    
-    
+
 }

@@ -17,11 +17,20 @@ enum DataPersistenceError: Error { // conforming to the Error protocol
 }
 
 class PersistenceHelper {
+    // so I am persisting the IMAGES
     
-    private static var weather = [WeatherModel]()
+    // MARK: first question about persisting...
+    // should this be for the main level or the level under  it.
+    // like is it based on what we wanna persist or it is best to make it that everything is being persisted...
+    private static var weather = [Daily]()
     
     //the place it should be stored...
     static let fileName = "weather.plist"
+    
+    // CRUD method
+    
+    //MARK: why are things marked private static func again??
+   // private static func saveItem
     
     
     

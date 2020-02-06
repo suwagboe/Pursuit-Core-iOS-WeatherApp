@@ -29,8 +29,13 @@ struct PhotosAPIClient {
                 completion(.failure(.networkClientError(appError)))
             case .success(let data):
                 do{
-                    let result = try JSONDecoder().decode(Photos.self, from: data)
-                    completion(.success(result.hits))
+//                    let result = try JSONDecoder().decode([AllPhotos].self, from: data)
+//                    completion(.success(result)) // this cant work because you have to go from top to bottom inside to outside when working with the model
+                     let result = try JSONDecoder().decode(Photos.self, from: data)
+                   completion(.success(result.hits))
+
+                    // need access to photos to go into hits
+                    // but why cant I just go into all
                 } catch{
                     completion(.failure(.decodingError(error)))
                 }
