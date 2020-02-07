@@ -40,7 +40,7 @@ class FavoritesViewController: UIViewController {
     
     private func loadPersistedStuff(){
         do {
-            try theSavedPhotos = PersistenceHelper.loadPersistedPhotos()
+            try theSavedPhotos = PersistenceHelper.loadPersistedPhotos().sorted {$0.currentDate < $1.currentDate}
         } catch {
             print("errors: \(error)")
         }

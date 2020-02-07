@@ -60,7 +60,9 @@ class DetailViewController: UIViewController {
         
         if let imageData = image.jpegData(compressionQuality: 0.5) {
         do{
-            let favPhoto = FavPhoto(imageData: imageData, placeName: nameLabel!)
+            let favPhoto = FavPhoto(imageData: imageData, placeName: nameLabel! , currentDate: Date())
+            // Date() saves the current date and time...
+
             
             try PersistenceHelper.savePhotoTothePersisenceArrayAbove(photo: favPhoto )
         }catch {

@@ -21,6 +21,7 @@ struct FavPhoto: Codable {
     // making the model in case you want to save more infomation then what is needed...
     let imageData: Data
     let placeName: String
+    let currentDate: Date
     
     let identifier = UUID().uuidString // gives access to unique identifier
 
