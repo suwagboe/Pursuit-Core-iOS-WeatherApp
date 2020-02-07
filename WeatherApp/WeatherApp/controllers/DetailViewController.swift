@@ -113,10 +113,12 @@ class DetailViewController: UIViewController {
 //             let newPhoto = FavsController.event else {
 //               fatalError("failed to access CreateEventController")
 //           }
+
+        tabBarController?.selectedIndex = 1
         
-        
-        let favsVC = FavoritesViewController()
-        navigationController?.pushViewController(favsVC, animated: true)
+        // this will only push ontop of the other view and not actually change to the other view controller
+        //let favsVC = FavoritesViewController()
+        //navigationController?.pushViewController(favsVC, animated: true)
     }
     
     private func getLargeImageString(name: String){

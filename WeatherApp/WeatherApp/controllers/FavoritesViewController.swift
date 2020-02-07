@@ -27,7 +27,6 @@ class FavoritesViewController: UIViewController {
     
         favsViewInstance.fCollection.delegate = self
         favsViewInstance.fCollection.dataSource = self
-        view.backgroundColor = .yellow
         
         favsViewInstance.fCollection.register(FavsCell.self, forCellWithReuseIdentifier: "favCell")
 //    favsViewInstance.fCollection.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "favCell")
@@ -40,7 +39,8 @@ class FavoritesViewController: UIViewController {
     
     private func loadPersistedStuff(){
         do {
-            try theSavedPhotos = PersistenceHelper.loadPersistedPhotos().sorted {$0.currentDate < $1.currentDate}
+            // sort by the date() which is an element inside of the image object by which one came first
+            try theSavedPhotos = PersistenceHelper.loadPersistedPhotos().sorted {$0.currentDate > $1.currentDate}
         } catch {
             print("errors: \(error)")
         }
@@ -85,7 +85,6 @@ extension FavoritesViewController: UICollectionViewDataSource{
 
         cell.configureImage(with: photo)
     
-        cell.backgroundColor = .blue
         return cell
     }
     
@@ -98,7 +97,7 @@ extension FavoritesViewController: UICollectionViewDelegateFlowLayout {
         let maxSize: CGSize = UIScreen.main.bounds.size
         
         let itemWidth: CGFloat = maxSize.width
-        let itemheight: CGFloat = maxSize.height * 0.5
+        let itemheight: CGFloat = maxSize.height * 0.30
         
         return CGSize(width: itemWidth, height: itemheight)
     }

@@ -16,9 +16,19 @@ class FavsView: UIView {
         layout.scrollDirection = .vertical
         
         let collection = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-        collection.backgroundColor = .red
+       // collection.backgroundColor = UIImage.gif(name: "weather gif")
+        //collection.backgroundView = UIImage.gif(name: "weather gif")
+        
         return collection
     }()
+    
+    public lazy var imageView: UIImageView = {
+         let iv = UIImageView()
+          iv.image = UIImage.gif(name: "weather gif")
+                 iv.contentMode = .scaleAspectFill
+                 iv.backgroundColor = .blue // just to test it...
+          return iv
+      }()
     
         override init(frame: CGRect) {
             super.init(frame: UIScreen.main.bounds)
@@ -31,6 +41,7 @@ class FavsView: UIView {
         }
         
         private func commonInit() {
+          //  setUpNewsImageViewConstraints()
             setUpFCollection()
             
         }
@@ -47,6 +58,7 @@ class FavsView: UIView {
             fCollection.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
+ 
     
     
 

@@ -20,7 +20,7 @@ class WeatherView: UIView {
         collection.backgroundColor = .clear
         return collection
     }()
-    
+//   This is how  Idid it:  https://stackoverflow.com/questions/27919620/how-to-load-gif-image-in-swift
     public lazy var imageView: UIImageView = {
        let iv = UIImageView()
         iv.image = UIImage.gif(name: "weather gif")
@@ -29,12 +29,12 @@ class WeatherView: UIView {
        // iv.loadGif(asset: "weather gif")
         return iv
     }()
+
     
-    public lazy var viewHazyLayer: UIImageView = {
-         let iv = UIImageView()
-          iv.image = UIImage(systemName: "cloud.fill")
-                 iv.contentMode = .scaleAspectFill
-                 iv.backgroundColor = .blue // just to test it...
+    public lazy var viewHazyLayer: UIView = {
+         let iv = UIView()
+        iv.backgroundColor = .black
+        iv.alpha = 0.3
                  
           return iv
       }()
@@ -82,7 +82,7 @@ class WeatherView: UIView {
     private func commonInit(){
         // TOP ONE IS WHAT CONSTRAINT FIRST
         setUpNewsImageViewConstraints()
-
+setUpviewHazyLayerConstraints()
         setUpCollectionView()
         setUpTextField()
         setUptextFieldLabel()
@@ -159,6 +159,26 @@ class WeatherView: UIView {
             imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: trailingAnchor),
             imageView.bottomAnchor.constraint(equalTo: bottomAnchor)
+           // imageView.heightAnchor.constraint(equalTo: heightAnchor),
+           // imageView.widthAnchor.constraint(equalTo: newsImageView.heightAnchor)
+        ])
+    }
+    
+    private func setUpviewHazyLayerConstraints(){
+        addSubview(viewHazyLayer)
+        
+        viewHazyLayer.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+        // want some padding
+            // with cell constraints there is no need for safe area constraints
+            viewHazyLayer.topAnchor.constraint(equalTo: topAnchor)
+            // top is postive because we are going down
+            // want some padding because it shouldn't be touching it.. should have some distance
+            ,
+            viewHazyLayer.leadingAnchor.constraint(equalTo: leadingAnchor),
+            viewHazyLayer.trailingAnchor.constraint(equalTo: trailingAnchor),
+            viewHazyLayer.bottomAnchor.constraint(equalTo: bottomAnchor)
            // imageView.heightAnchor.constraint(equalTo: heightAnchor),
            // imageView.widthAnchor.constraint(equalTo: newsImageView.heightAnchor)
         ])
