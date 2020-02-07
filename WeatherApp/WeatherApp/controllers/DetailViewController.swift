@@ -125,7 +125,9 @@ class DetailViewController: UIViewController {
             case .failure(let appError):
                 print(appError)
             case .success(let AccessingAllPhotos):
-                let largeImageURL = AccessingAllPhotos[1].largeImageURL
+                // get a random photo
+                let largeImageURL = AccessingAllPhotos.randomElement()?.largeImageURL
+                // largeImageURL = AccessingAllPhotos[1].largeImageURL
                 self.actualImageURL = largeImageURL
                 self.configreDetailController()
             }
