@@ -150,7 +150,7 @@ class DetailViewController: UIViewController {
             self.inchesOfPercip.text = "There will be \(info.precipType ?? "!!!!") inches of rain" //MARK: This one isnt working!!!!!
             self.lowLabel.text = "The low temp is: \(info.temperatureLow)"
             self.highLabel.text = "The high temp for today is: \(info.temperatureHigh?.description ?? "not available")"
-            self.imageView.getImage(with: self.actualImageURL ?? "newyork", completion: {
+            self.imageView.getImage(with: self.actualImageURL ?? "https://developer.apple.com/swift/images/swift-og.png", completion: {
                        [weak self]
                        (result) in
                        switch result {
