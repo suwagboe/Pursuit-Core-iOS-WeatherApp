@@ -75,27 +75,7 @@ class WeatherController: UIViewController {
      //   view.backgroundColor = 
     }
     
-    private func setupGif(){
-        let path = URL(fileURLWithPath: Bundle.main.path(forResource: "ezgif.com-gif-maker", ofType: "mov")!)
-        let player = AVPlayer(url: path)
-        
-        let newLayer = AVPlayerLayer(player: player)
-        newLayer.frame = self.view.frame
-        self.view.layer.addSublayer(newLayer)
-        newLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
-        
-        player.actionAtItemEnd = .none
-        player.play()
-                player.actionAtItemEnd = AVPlayer.ActionAtItemEnd.none
-        NotificationCenter.default.addObserver(self, selector: #selector(WeatherController.videoDidPlayToEnd(_:)), name: NSNotification.Name(rawValue: "AVPlayerItemPlayToEndTimeNotification"), object: player.currentTime())
-       // player.playImmediately(atRate: .infinity)
-
-    }
-    
-    @objc func videoDidPlayToEnd(_ notification: Notification){
-        let player: AVPlayerItem = notification.object as! AVPlayerItem
-     //XR   player.seek(to: CMTime.zero)
-    }
+   
     
     private func convertTheZipcode(_ text: String){
         // MARK: TODO - need to store the zipcode using UserDefaults.
