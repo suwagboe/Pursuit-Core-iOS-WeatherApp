@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import AVFoundation
+import AVKit
 import CoreLocation
 
 class WeatherController: UIViewController {
     
     let weatherViewInstance = WeatherView()
     
+    @IBOutlet weak var videoView: UIView!
     // how to take in the input from the 
     
     private var listOfWeatherInfo = [ForcastData]() {
@@ -42,8 +45,13 @@ class WeatherController: UIViewController {
         view = weatherViewInstance
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        //setupGif()
         userEnteredText = "10474"
 
         //view.backgroundColor = .systemBackground
@@ -57,8 +65,34 @@ class WeatherController: UIViewController {
         
         // this is registering the class for the cell... 0
         weatherViewInstance.weatherCollection.register(UINib(nibName: "WeatherCell", bundle: nil), forCellWithReuseIdentifier: "weatherCell")
+        view.backgroundColor = .blue
+            
+       
+        
         
      //   view.backgroundColor = 
+    }
+    
+    private func setupGif(){
+        let path = URL(fileURLWithPath: Bundle.main.path(forResource: "ezgif.com-gif-maker", ofType: "mov")!)
+        let player = AVPlayer(url: path)
+        
+        let newLayer = AVPlayerLayer(player: player)
+        newLayer.frame = self.view.frame
+        self.view.layer.addSublayer(newLayer)
+        newLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+        
+        player.actionAtItemEnd = .none
+        player.play()
+                player.actionAtItemEnd = AVPlayer.ActionAtItemEnd.none
+        NotificationCenter.default.addObserver(self, selector: #selector(WeatherController.videoDidPlayToEnd(_:)), name: NSNotification.Name(rawValue: "AVPlayerItemPlayToEndTimeNotification"), object: player.currentTime())
+       // player.playImmediately(atRate: .infinity)
+
+    }
+    
+    @objc func videoDidPlayToEnd(_ notification: Notification){
+        let player: AVPlayerItem = notification.object as! AVPlayerItem
+        player.seek(to: CMTime.zero)
     }
     
     private func convertTheZipcode(_ text: String){

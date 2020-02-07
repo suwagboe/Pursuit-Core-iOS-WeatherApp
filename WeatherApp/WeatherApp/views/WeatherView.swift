@@ -21,6 +21,14 @@ class WeatherView: UIView {
         return collection
     }()
     
+//    public lazy var imageView: UIImageView = {
+//       let layout = UIImageView()
+//
+//        let image = UIImage
+//
+//
+//    }()
+    
     public lazy var textField: UITextField = {
         let text = UITextField()
         text.placeholder = "zipcode"

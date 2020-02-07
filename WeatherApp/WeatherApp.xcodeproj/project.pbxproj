@@ -32,6 +32,8 @@
 		55B36E5823ECDD0F00DE4C4B /* ImageObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B36E5723ECDD0F00DE4C4B /* ImageObject.swift */; };
 		55B36E5A23ECF6C000DE4C4B /* favCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B36E5923ECF6C000DE4C4B /* favCell.swift */; };
 		55B36E5C23ECF6CD00DE4C4B /* favCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55B36E5B23ECF6CD00DE4C4B /* favCell.xib */; };
+		55B36E5E23ED02BD00DE4C4B /* weather gif.gif in Resources */ = {isa = PBXBuildFile; fileRef = 55B36E5D23ED02BD00DE4C4B /* weather gif.gif */; };
+		55B36E6023ED076100DE4C4B /* ezgif.com-gif-maker.mov in Resources */ = {isa = PBXBuildFile; fileRef = 55B36E5F23ED076100DE4C4B /* ezgif.com-gif-maker.mov */; };
 		55B7A04E23E4C90A002382FF /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B7A04D23E4C90A002382FF /* WeatherView.swift */; };
 		55B7A05223E4CDE5002382FF /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B7A05123E4CDE5002382FF /* File.swift */; };
 		55E6997623E5FA3900D8DCE1 /* WeatherAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E6997523E5FA3900D8DCE1 /* WeatherAppTests.swift */; };
@@ -74,6 +76,8 @@
 		55B36E5723ECDD0F00DE4C4B /* ImageObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageObject.swift; sourceTree = "<group>"; };
 		55B36E5923ECF6C000DE4C4B /* favCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = favCell.swift; sourceTree = "<group>"; };
 		55B36E5B23ECF6CD00DE4C4B /* favCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = favCell.xib; sourceTree = "<group>"; };
+		55B36E5D23ED02BD00DE4C4B /* weather gif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = "weather gif.gif"; path = "../../../../../../Downloads/weather gif.gif"; sourceTree = "<group>"; };
+		55B36E5F23ED076100DE4C4B /* ezgif.com-gif-maker.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = "ezgif.com-gif-maker.mov"; path = "../../../../../../Downloads/ezgif.com-gif-maker.mov"; sourceTree = "<group>"; };
 		55B7A04D23E4C90A002382FF /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 		55B7A05123E4CDE5002382FF /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		55E6997323E5FA3900D8DCE1 /* WeatherAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,6 +127,8 @@
 		548CE050234D33B500B5177D /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				55B36E5F23ED076100DE4C4B /* ezgif.com-gif-maker.mov */,
+				55B36E5D23ED02BD00DE4C4B /* weather gif.gif */,
 				55A4053223EA1776003EF1E1 /* helperFunctions */,
 				55A4053023EA172C003EF1E1 /* PersistenceHelper */,
 				55AD5FB423E4FBDE00748EFB /* APIClients */,
@@ -324,9 +330,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55B36E6023ED076100DE4C4B /* ezgif.com-gif-maker.mov in Resources */,
 				55B36E5C23ECF6CD00DE4C4B /* favCell.xib in Resources */,
 				548CE05E234D33B600B5177D /* LaunchScreen.storyboard in Resources */,
 				55A4053423EA17BA003EF1E1 /* DetailController.storyboard in Resources */,
+				55B36E5E23ED02BD00DE4C4B /* weather gif.gif in Resources */,
 				548CE068234D340700B5177D /* Assets.xcassets in Resources */,
 				55AD5FA523E4ECA100748EFB /* WeatherCell.xib in Resources */,
 			);
