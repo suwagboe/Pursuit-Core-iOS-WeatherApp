@@ -40,13 +40,14 @@ class FavsCell: UICollectionViewCell {
               NSLayoutConstraint.activate([
               // want some padding
                   // with cell constraints there is no need for safe area constraints
-                  favImage.topAnchor.constraint(equalTo: topAnchor, constant: 20)
+                  favImage.topAnchor.constraint(equalTo: topAnchor)
                   // top is postive because we are going down
                   // want some padding because it shouldn't be touching it.. should have some distance
                   ,
-                  favImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-                  favImage.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.50),
-                  favImage.widthAnchor.constraint(equalTo: favImage.heightAnchor)
+                  favImage.leadingAnchor.constraint(equalTo: leadingAnchor),
+                  favImage.trailingAnchor.constraint(equalTo: trailingAnchor),
+                  favImage.heightAnchor.constraint(equalTo: heightAnchor),
+                 // favImage.widthAnchor.constraint(equalTo: favImage.heightAnchor)
               ])
     }
 
