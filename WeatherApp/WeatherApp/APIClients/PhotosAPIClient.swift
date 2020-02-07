@@ -12,7 +12,12 @@ import NetworkHelper
 struct PhotosAPIClient {
     
     static func getLargePhotoLink(placeName: String, completion: @escaping (Result< [APhoto], AppError>)->()){
-        let enpointURL = "https://pixabay.com/api/?key=14936493-906bcb5446b6ffd582095b08b&qnewYork&image_type=photo&pretty=true"
+        
+        // https://pixabay.com/api/?key=15170253-dbcc269111030bd8db49cda4c&q=\(search.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!)
+        
+        
+        let enpointURL = "https://pixabay.com/api/?key=15170253-dbcc269111030bd8db49cda4c&q=\(placeName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!)"
+        //"https://pixabay.com/api/?key=14936493-906bcb5446b6ffd582095b08b&q\(placeName)&image_type=photo&pretty=true"
         //"https://pixabay.com/api/?key=14936493-14936493-906bcb5446b6ffd582095b08b&q=\( placeName))&image_type=photo&pretty=true
         guard let url = URL(string: enpointURL) else {
             completion(.failure(.badURL(enpointURL)))

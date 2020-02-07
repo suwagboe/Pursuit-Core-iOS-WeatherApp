@@ -8,6 +8,10 @@
 
 import Foundation
 
+// want to encode the data not the string... 
+//
+//
+
 //      https://api.darksky.net/forecast/[key]/[latitude],[longitude]
 
 /*

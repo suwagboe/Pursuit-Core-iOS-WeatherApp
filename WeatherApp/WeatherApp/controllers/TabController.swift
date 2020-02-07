@@ -26,7 +26,7 @@ class TabController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        viewControllers = [wc, fc]
+        viewControllers = [UINavigationController(rootViewController: wc), fc]
         
     }
  

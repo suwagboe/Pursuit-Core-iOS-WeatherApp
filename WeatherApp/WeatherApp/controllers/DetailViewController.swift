@@ -48,11 +48,29 @@ class DetailViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
         tap.numberOfTapsRequired = 2
         view.addGestureRecognizer(tap)
+        
+    }
+    
+    func persistThePhotoAfterLike(){
+      
+        guard let image = imageView.image else {
+            print("The image isnt there")
+            return
+        }
+        
+        if let imageData = image.jpegData(compressionQuality: 0.5) {
+        do{
+            try PersistenceHelper.savePhotoTothePersisenceArrayAbove(photo: FavPhotos(image: imageData) )
+        }catch {
+            print("this is ithe damn error: \(error)")
+        }
+        }
+    
     }
     
     @objc func doubleTapped() {
         pulsatingAnimationAndScale()
-        
+        persistThePhotoAfterLike()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5){
             self.goToFavsController()
         }
@@ -62,6 +80,9 @@ class DetailViewController: UIViewController {
     @IBAction func favsbutton(_ sender: UIButton) {
         //MARK: why when it segues does it not show the tab bar...
         goToFavsController()
+        
+        //persistThePhotoAfterLike()
+        
     }
     
     private func pulsatingAnimationAndScale(){
@@ -82,6 +103,14 @@ class DetailViewController: UIViewController {
     
     
     private func goToFavsController(){
+        
+        //segue: UIStoryboardSegue
+//        guard let FavsController = segue.source as? FavoritesViewController,
+//             let newPhoto = FavsController.event else {
+//               fatalError("failed to access CreateEventController")
+//           }
+        
+        
         let favsVC = FavoritesViewController()
         navigationController?.pushViewController(favsVC, animated: true)
     }
@@ -94,7 +123,7 @@ class DetailViewController: UIViewController {
             case .failure(let appError):
                 print(appError)
             case .success(let AccessingAllPhotos):
-                let largeImageURL = AccessingAllPhotos[0].largeImageURL
+                let largeImageURL = AccessingAllPhotos[1].largeImageURL
                 self.actualImageURL = largeImageURL
                 self.configreDetailController()
             }

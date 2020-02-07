@@ -16,7 +16,7 @@ class FavsView: UIView {
         layout.scrollDirection = .vertical
         
         let collection = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-        collection.backgroundColor = .magenta
+        collection.backgroundColor = .red
         return collection
     }()
     

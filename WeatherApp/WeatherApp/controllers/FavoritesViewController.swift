@@ -12,7 +12,7 @@ class FavoritesViewController: UIViewController {
     
     private let favsViewInstance = FavsView()
     
-    private var theSavedPhotos = [APhoto](){
+    public var theSavedPhotos = [FavPhotos](){
         didSet{
             favsViewInstance.fCollection.reloadData()
         }
@@ -24,16 +24,20 @@ class FavoritesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadPersistedStuff()
+    
         favsViewInstance.fCollection.delegate = self
         favsViewInstance.fCollection.dataSource = self
         view.backgroundColor = .yellow
+        favsViewInstance.fCollection.register(favCell.self, forCellWithReuseIdentifier: "favCell")
+//    favsViewInstance.fCollection.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "favCell")
+        favsViewInstance.fCollection.register(UINib(nibName: "favCell", bundle: nil), forCellWithReuseIdentifier: "favCell")
         
-    favsViewInstance.fCollection.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "fCell")
+          
+        loadPersistedStuff()
+
     }
     
     private func loadPersistedStuff(){
-        
         do {
             try theSavedPhotos = PersistenceHelper.loadPersistedPhotos()
         } catch {
@@ -46,19 +50,42 @@ class FavoritesViewController: UIViewController {
 }
 
 extension FavoritesViewController: UICollectionViewDataSource{
-    
     // amount of cell
     // what is the cell
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 50
+        return theSavedPhotos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "fCell", for: indexPath)
+        
+        guard let cell =  favsViewInstance.fCollection.dequeueReusableCell(withReuseIdentifier: "favCell", for: indexPath) as? favCell else {
+            fatalError("ITS WRONG \(Error.self)")
+        
+            return UICollectionViewCell()
+        }
+        
+        // puts a image inside of the cell
+//        let imageView:UIImageView=UIImageView(frame: CGRect(x: 50, y: 50, width: 200, height: 200))
+
+//        // data into image
+
+//        // need to access single photo
+//        let photo = theSavedPhotos[indexPath.row]
+
+//        // assign the image with the above photo
+//        let img : UIImage = UIImage(data: photo.image)!
+
+//        // assigns the imageView to the image.
+//        imageView.image = img
+//      cell.contentView.addSubview(imageView)
+        
+               let photo = theSavedPhotos[indexPath.row]
+
+        cell.photo.image = UIImage(data: photo.image)
         
         
-        
+    
         cell.backgroundColor = .blue
         return cell
     }
@@ -72,7 +99,7 @@ extension FavoritesViewController: UICollectionViewDelegateFlowLayout {
         let maxSize: CGSize = UIScreen.main.bounds.size
         
         let itemWidth: CGFloat = maxSize.width
-        let itemheight: CGFloat = maxSize.height * 0.2
+        let itemheight: CGFloat = maxSize.height * 0.3
         
         return CGSize(width: itemWidth, height: itemheight)
     }
