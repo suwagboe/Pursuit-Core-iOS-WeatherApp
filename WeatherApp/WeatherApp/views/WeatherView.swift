@@ -17,23 +17,34 @@ class WeatherView: UIView {
       //  layout.itemSize = CGSize(width: 400, height: 40)
         
         let collection = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-        collection.backgroundColor = .magenta
+        collection.backgroundColor = .clear
         return collection
     }()
     
-//    public lazy var imageView: UIImageView = {
-//       let layout = UIImageView()
-//
-//        let image = UIImage
-//
-//
-//    }()
+    public lazy var imageView: UIImageView = {
+       let iv = UIImageView()
+        iv.image = UIImage.gif(name: "weather gif")
+               iv.contentMode = .scaleAspectFill
+               iv.backgroundColor = .blue // just to test it...
+       // iv.loadGif(asset: "weather gif")
+        return iv
+    }()
+    
+    public lazy var viewHazyLayer: UIImageView = {
+         let iv = UIImageView()
+          iv.image = UIImage(systemName: "cloud.fill")
+                 iv.contentMode = .scaleAspectFill
+                 iv.backgroundColor = .blue // just to test it...
+                 
+          return iv
+      }()
     
     public lazy var textField: UITextField = {
         let text = UITextField()
         text.placeholder = "zipcode"
       //  text.placeholderRect(forBounds: CGRect(0)) I want to center the place holder text. 
-        text.backgroundColor = .blue
+        text.backgroundColor = .systemGray
+        text.textColor = .white
         return text
     }()
     
@@ -42,7 +53,9 @@ class WeatherView: UIView {
         let label = UILabel()
         
         label.text = "Please enter a zipcode below"
-        label.backgroundColor = .green
+       // label.backgroundColor = .green
+        label.font = UIFont.preferredFont(forTextStyle: .headline)
+        label.textColor = .white
         
         return label
     }()
@@ -50,7 +63,8 @@ class WeatherView: UIView {
     public lazy var weatherLabel: UILabel = {
         let label = UILabel()
         label.text = "The weather this area is..."
-        
+        label.font = UIFont.preferredFont(forTextStyle: .headline)
+
         label.textColor = .black
         return label
     }()
@@ -66,6 +80,9 @@ class WeatherView: UIView {
     }
     
     private func commonInit(){
+        // TOP ONE IS WHAT CONSTRAINT FIRST
+        setUpNewsImageViewConstraints()
+
         setUpCollectionView()
         setUpTextField()
         setUptextFieldLabel()
@@ -80,10 +97,7 @@ class WeatherView: UIView {
         NSLayoutConstraint.activate([
             textFieldLabel.topAnchor.constraint(equalTo: weatherCollection.bottomAnchor, constant: 20),
             textFieldLabel.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor)
-            
-        
         ])
-    
     }
     
     private func setUpWeatherLabel(){
@@ -125,12 +139,30 @@ class WeatherView: UIView {
             weatherCollection.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0),
             weatherCollection.leadingAnchor.constraint(equalTo: leadingAnchor),
             weatherCollection.trailingAnchor.constraint(equalTo: trailingAnchor),
-            weatherCollection.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25)
+            weatherCollection.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.20)
 //            weatherCollection.heightAnchor.constraint(equalTo: heightAnchor, constant: )
            ])
-        
         }
     
+    private func setUpNewsImageViewConstraints(){
+        addSubview(imageView)
+        
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+        // want some padding
+            // with cell constraints there is no need for safe area constraints
+            imageView.topAnchor.constraint(equalTo: topAnchor)
+            // top is postive because we are going down
+            // want some padding because it shouldn't be touching it.. should have some distance
+            ,
+            imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            imageView.bottomAnchor.constraint(equalTo: bottomAnchor)
+           // imageView.heightAnchor.constraint(equalTo: heightAnchor),
+           // imageView.widthAnchor.constraint(equalTo: newsImageView.heightAnchor)
+        ])
+    }
 
 }
 

@@ -92,7 +92,7 @@ class WeatherController: UIViewController {
     
     @objc func videoDidPlayToEnd(_ notification: Notification){
         let player: AVPlayerItem = notification.object as! AVPlayerItem
-        player.seek(to: CMTime.zero)
+     //XR   player.seek(to: CMTime.zero)
     }
     
     private func convertTheZipcode(_ text: String){
