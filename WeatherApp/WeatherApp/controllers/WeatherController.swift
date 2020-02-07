@@ -188,6 +188,7 @@ extension WeatherController: UICollectionViewDataSource {
         // ToDo: a configureCell() function that can be called here an apply everything
         
         weatherViewInstance.weatherLabel.text = "The forcast for \(placeNamed ?? "niyas word") is below"
+        
 
         cell.configureCell(with: selectday)
 //        cell.backgroundColor = .yellow

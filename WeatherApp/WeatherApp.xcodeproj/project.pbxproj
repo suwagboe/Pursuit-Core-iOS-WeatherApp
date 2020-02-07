@@ -39,6 +39,7 @@
 		55C20C3823EDE83400C9E6E1 /* gifFramework.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C20C3723EDE83400C9E6E1 /* gifFramework.swift */; };
 		55C20C3A23EDEEFD00C9E6E1 /* GIF-FILE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C20C3923EDEEFD00C9E6E1 /* GIF-FILE.swift */; };
 		55C20C3C23EDF45B00C9E6E1 /* FavsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C20C3B23EDF45B00C9E6E1 /* FavsCell.swift */; };
+		55C20C3E23EDF71C00C9E6E1 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C20C3D23EDF71C00C9E6E1 /* Extension.swift */; };
 		55E6997623E5FA3900D8DCE1 /* WeatherAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E6997523E5FA3900D8DCE1 /* WeatherAppTests.swift */; };
 		55E6997E23E6245A00D8DCE1 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E6997D23E6245A00D8DCE1 /* AppError.swift */; };
 /* End PBXBuildFile section */
@@ -86,6 +87,7 @@
 		55C20C3723EDE83400C9E6E1 /* gifFramework.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gifFramework.swift; sourceTree = "<group>"; };
 		55C20C3923EDEEFD00C9E6E1 /* GIF-FILE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GIF-FILE.swift"; sourceTree = "<group>"; };
 		55C20C3B23EDF45B00C9E6E1 /* FavsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavsCell.swift; sourceTree = "<group>"; };
+		55C20C3D23EDF71C00C9E6E1 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		55E6997323E5FA3900D8DCE1 /* WeatherAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		55E6997523E5FA3900D8DCE1 /* WeatherAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppTests.swift; sourceTree = "<group>"; };
 		55E6997723E5FA3900D8DCE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 				548CE051234D33B500B5177D /* AppDelegate.swift */,
 				55C20C3923EDEEFD00C9E6E1 /* GIF-FILE.swift */,
 				55C20C3723EDE83400C9E6E1 /* gifFramework.swift */,
+				55C20C3D23EDF71C00C9E6E1 /* Extension.swift */,
 			);
 			path = "supporting files";
 			sourceTree = "<group>";
@@ -378,6 +381,7 @@
 				548CE056234D33B500B5177D /* WeatherController.swift in Sources */,
 				55731F6523EA061400674F2B /* photosModel.swift in Sources */,
 				55AD5FAB23E4F1E700748EFB /* WeatherModel.swift in Sources */,
+				55C20C3E23EDF71C00C9E6E1 /* Extension.swift in Sources */,
 				55A4053A23EA1B82003EF1E1 /* TabController.swift in Sources */,
 				548CE052234D33B500B5177D /* AppDelegate.swift in Sources */,
 				55B36E5423ECB70C00DE4C4B /* FavsView.swift in Sources */,

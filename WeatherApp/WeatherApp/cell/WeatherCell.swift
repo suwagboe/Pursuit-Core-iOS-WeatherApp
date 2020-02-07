@@ -36,6 +36,8 @@ class WeatherCell: UICollectionViewCell {
         
         
     weatherImageView.image = UIImage(named: weatherInfo.icon)
+    
+    dateLabel.text = weatherInfo.time.convertDate()
         
     }
     
