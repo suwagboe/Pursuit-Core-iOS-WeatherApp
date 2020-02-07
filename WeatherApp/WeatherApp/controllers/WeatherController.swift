@@ -52,7 +52,7 @@ class WeatherController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //setupGif()
-        userEnteredText = "10474"
+        userEnteredText = UserSettings.shared.retrieveSavedZipcode() ?? ""
 
         //view.backgroundColor = .systemBackground
         navigationItem.title = "Weather App"
@@ -67,12 +67,7 @@ class WeatherController: UIViewController {
         weatherViewInstance.weatherCollection.register(UINib(nibName: "WeatherCell", bundle: nil), forCellWithReuseIdentifier: "weatherCell")
         
        // weatherViewInstance.weatherCollection.register(FavsCell.self, forCellWithReuseIdentifier: "weatherCell")
-        view.backgroundColor = .blue
-            
-       
-        
-        
-     //   view.backgroundColor = 
+
     }
     
    
@@ -142,8 +137,12 @@ extension WeatherController: UITextFieldDelegate {
             //ToDo: could guard against letters in here
             return false
         }
+        
         //assign userEnteredText
         userEnteredText = enteredText
+        
+        
+        UserSettings.shared.saveZipcode(with: enteredText)
         textField.resignFirstResponder()
         return true
     }

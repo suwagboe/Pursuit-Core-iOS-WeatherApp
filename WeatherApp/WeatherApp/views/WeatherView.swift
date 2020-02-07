@@ -23,7 +23,7 @@ class WeatherView: UIView {
 //   This is how  Idid it:  https://stackoverflow.com/questions/27919620/how-to-load-gif-image-in-swift
     public lazy var imageView: UIImageView = {
        let iv = UIImageView()
-        iv.image = UIImage.gif(name: "weather gif")
+        iv.image = UIImage.gifImageWithName("weather gif")
                iv.contentMode = .scaleAspectFill
                iv.backgroundColor = .blue // just to test it...
        // iv.loadGif(asset: "weather gif")

@@ -24,7 +24,7 @@ class FavsView: UIView {
     
     public lazy var imageView: UIImageView = {
          let iv = UIImageView()
-          iv.image = UIImage.gif(name: "weather gif")
+          iv.image = UIImage.gifImageWithName("weather gif")
                  iv.contentMode = .scaleAspectFill
                  iv.backgroundColor = .blue // just to test it...
           return iv
