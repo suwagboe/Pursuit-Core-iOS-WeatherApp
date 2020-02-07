@@ -12,7 +12,7 @@ class FavoritesViewController: UIViewController {
     
     private let favsViewInstance = FavsView()
     
-    public var theSavedPhotos = [FavPhotos](){
+    public var theSavedPhotos = [FavPhoto](){
         didSet{
             favsViewInstance.fCollection.reloadData()
         }
@@ -28,9 +28,10 @@ class FavoritesViewController: UIViewController {
         favsViewInstance.fCollection.delegate = self
         favsViewInstance.fCollection.dataSource = self
         view.backgroundColor = .yellow
-        favsViewInstance.fCollection.register(favCell.self, forCellWithReuseIdentifier: "favCell")
+        
+        favsViewInstance.fCollection.register(FavsCell.self, forCellWithReuseIdentifier: "favCell")
 //    favsViewInstance.fCollection.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "favCell")
-        favsViewInstance.fCollection.register(UINib(nibName: "favCell", bundle: nil), forCellWithReuseIdentifier: "favCell")
+       // favsViewInstance.fCollection.register(UINib(nibName: "favCell", bundle: nil), forCellWithReuseIdentifier: "favCell")
         
           
         loadPersistedStuff()
@@ -59,10 +60,8 @@ extension FavoritesViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         
-        guard let cell =  favsViewInstance.fCollection.dequeueReusableCell(withReuseIdentifier: "favCell", for: indexPath) as? favCell else {
-            fatalError("ITS WRONG \(Error.self)")
-        
-            return UICollectionViewCell()
+        guard let cell =  favsViewInstance.fCollection.dequeueReusableCell(withReuseIdentifier: "favCell", for: indexPath) as? FavsCell else {
+            fatalError("couldnt downcast")
         }
         
         // puts a image inside of the cell
@@ -81,10 +80,10 @@ extension FavoritesViewController: UICollectionViewDataSource{
 //      cell.contentView.addSubview(imageView)
         
                let photo = theSavedPhotos[indexPath.row]
+              //  let img : UIImage = UIImage(data: photo.image)!
+        //FavsCell.imageView.image = img
 
-        cell.photo.image = UIImage(data: photo.image)
-        
-        
+        cell.configureImage(with: photo)
     
         cell.backgroundColor = .blue
         return cell

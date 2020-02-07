@@ -22,7 +22,7 @@ class PersistenceHelper {
     // MARK: first question about persisting...
     // should this be for the main level or the level under  it.
     // like is it based on what we wanna persist or it is best to make it that everything is being persisted...
-    private static var persistedImages = [FavPhotos]()
+    private static var persistedImages = [FavPhoto]()
     
     //the place it should be stored...
     static let fileName = "images.plist"
@@ -43,7 +43,7 @@ class PersistenceHelper {
         }
     }
     
-    static func savePhotoTothePersisenceArrayAbove(photo: FavPhotos) throws{
+    static func savePhotoTothePersisenceArrayAbove(photo: FavPhoto) throws{
         
         persistedImages.append(photo)
         
@@ -55,13 +55,13 @@ class PersistenceHelper {
         
     }
     
-    static func loadPersistedPhotos() throws -> [FavPhotos]{
+    static func loadPersistedPhotos() throws -> [FavPhoto]{
         let url = FileManager.PathToDocumentsDirectorty(with: fileName)
         
         if FileManager.default.fileExists(atPath: url.path){
             if let data = FileManager.default.contents(atPath: url.path){
                 do {
-                    persistedImages = try PropertyListDecoder().decode([FavPhotos].self, from: data)
+                    persistedImages = try PropertyListDecoder().decode([FavPhoto].self, from: data)
                 } catch {
                     throw DataPersistenceError.decodingError(error)
                 }

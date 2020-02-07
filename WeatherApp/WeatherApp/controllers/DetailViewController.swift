@@ -60,7 +60,9 @@ class DetailViewController: UIViewController {
         
         if let imageData = image.jpegData(compressionQuality: 0.5) {
         do{
-            try PersistenceHelper.savePhotoTothePersisenceArrayAbove(photo: FavPhotos(image: imageData) )
+            let favPhoto = FavPhoto(imageData: imageData, placeName: nameLabel!)
+            
+            try PersistenceHelper.savePhotoTothePersisenceArrayAbove(photo: favPhoto )
         }catch {
             print("this is ithe damn error: \(error)")
         }

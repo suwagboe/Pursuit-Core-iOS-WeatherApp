@@ -65,6 +65,8 @@ class WeatherController: UIViewController {
         
         // this is registering the class for the cell... 0
         weatherViewInstance.weatherCollection.register(UINib(nibName: "WeatherCell", bundle: nil), forCellWithReuseIdentifier: "weatherCell")
+        
+       // weatherViewInstance.weatherCollection.register(FavsCell.self, forCellWithReuseIdentifier: "weatherCell")
         view.backgroundColor = .blue
             
        
