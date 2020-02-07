@@ -13,20 +13,19 @@ class WeatherView: UIView {
     public lazy var weatherCollection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-       // layout.estimatedItemSize = CGSize(width: 100, height: 200)
-      //  layout.itemSize = CGSize(width: 400, height: 40)
-        
+     
         let collection = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         collection.backgroundColor = .clear
         return collection
     }()
+    
+    
 //   This is how  Idid it:  https://stackoverflow.com/questions/27919620/how-to-load-gif-image-in-swift
     public lazy var imageView: UIImageView = {
        let iv = UIImageView()
         iv.image = UIImage.gifImageWithName("weather gif")
                iv.contentMode = .scaleAspectFill
                iv.backgroundColor = .blue // just to test it...
-       // iv.loadGif(asset: "weather gif")
         return iv
     }()
 
@@ -42,9 +41,9 @@ class WeatherView: UIView {
     public lazy var textField: UITextField = {
         let text = UITextField()
         text.placeholder = "zipcode"
-      //  text.placeholderRect(forBounds: CGRect(0)) I want to center the place holder text. 
         text.backgroundColor = .systemGray
         text.textColor = .white
+        text.keyboardType = .numbersAndPunctuation
         return text
     }()
     
@@ -53,7 +52,6 @@ class WeatherView: UIView {
         let label = UILabel()
         
         label.text = "Please enter a zipcode below"
-       // label.backgroundColor = .green
         label.font = UIFont.preferredFont(forTextStyle: .headline)
         label.textColor = .white
         
@@ -82,7 +80,7 @@ class WeatherView: UIView {
     private func commonInit(){
         // TOP ONE IS WHAT CONSTRAINT FIRST
         setUpNewsImageViewConstraints()
-setUpviewHazyLayerConstraints()
+        setUpviewHazyLayerConstraints()
         setUpCollectionView()
         setUpTextField()
         setUptextFieldLabel()
@@ -91,9 +89,7 @@ setUpviewHazyLayerConstraints()
     
     private func setUptextFieldLabel() {
         addSubview(textFieldLabel)
-        
         textFieldLabel.translatesAutoresizingMaskIntoConstraints = false
-        
         NSLayoutConstraint.activate([
             textFieldLabel.topAnchor.constraint(equalTo: weatherCollection.bottomAnchor, constant: 20),
             textFieldLabel.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor)
@@ -107,8 +103,7 @@ setUpviewHazyLayerConstraints()
         
         NSLayoutConstraint.activate([
             weatherLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10),
-                //weatherLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 60),
-             //  weatherLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -45)
+        
             weatherLabel.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor)
         ])
     }
@@ -121,12 +116,8 @@ setUpviewHazyLayerConstraints()
         NSLayoutConstraint.activate([
             // will this place it 40 down from the top...
             textField.topAnchor.constraint(equalTo: weatherCollection.bottomAnchor, constant: 60),
-         //   textField.widthAnchor.constraint(equalTo: widthAnchor, constant: 0.5)
             textField.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 100),
             textField.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -100),
-         //   textField.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 300)
-       
-        
         ])
     }
     
@@ -140,7 +131,6 @@ setUpviewHazyLayerConstraints()
             weatherCollection.leadingAnchor.constraint(equalTo: leadingAnchor),
             weatherCollection.trailingAnchor.constraint(equalTo: trailingAnchor),
             weatherCollection.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.20)
-//            weatherCollection.heightAnchor.constraint(equalTo: heightAnchor, constant: )
            ])
         }
     
@@ -159,8 +149,6 @@ setUpviewHazyLayerConstraints()
             imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: trailingAnchor),
             imageView.bottomAnchor.constraint(equalTo: bottomAnchor)
-           // imageView.heightAnchor.constraint(equalTo: heightAnchor),
-           // imageView.widthAnchor.constraint(equalTo: newsImageView.heightAnchor)
         ])
     }
     
