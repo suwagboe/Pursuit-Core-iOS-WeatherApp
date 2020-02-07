@@ -45,6 +45,10 @@ class PersistenceHelper {
     
     static func savePhotoTothePersisenceArrayAbove(photo: FavPhoto) throws{
         
+        // before using the persistedImages arrays we first make sure that we are using the most updated saved data
+        
+        _ = try loadPersistedPhotos()
+        
         persistedImages.append(photo)
         
         do{
