@@ -52,7 +52,6 @@ class DetailViewController: UIViewController {
     }
     
     func persistThePhotoAfterLike(){
-      
         guard let image = imageView.image else {
             print("The image isnt there")
             return
@@ -63,9 +62,9 @@ class DetailViewController: UIViewController {
             let favPhoto = FavPhoto(imageData: imageData, placeName: nameLabel! , currentDate: Date())
             // Date() saves the current date and time...
 
-            
-            try PersistenceHelper.savePhotoTothePersisenceArrayAbove(photo: favPhoto )
+            try PersistenceHelper.savePhotoTothePersisenceArrayAbove(photo: favPhoto)
         }catch {
+            
             print("this is ithe damn error: \(error)")
         }
         }

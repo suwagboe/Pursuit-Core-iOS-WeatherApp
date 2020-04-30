@@ -47,10 +47,8 @@ class PersistenceHelper {
         
         // before using the persistedImages arrays we first make sure that we are using the most updated saved data
         
-        _ = try loadPersistedPhotos()
-        
+        _ = try loadPersistedPhotos() // this is the try that would fail should the else below still be used. 
         persistedImages.append(photo)
-        
         do{
             try saveHeartedImage()
         }catch{
@@ -61,7 +59,6 @@ class PersistenceHelper {
     
     static func loadPersistedPhotos() throws -> [FavPhoto]{
         let url = FileManager.PathToDocumentsDirectorty(with: fileName)
-        
         if FileManager.default.fileExists(atPath: url.path){
             if let data = FileManager.default.contents(atPath: url.path){
                 do {
@@ -73,11 +70,11 @@ class PersistenceHelper {
             }  else {
             throw DataPersistenceError.noData
             }
-        } else {
-            throw DataPersistenceError.fileDoesNotExist(fileName)
         }
+//        else { because this will automatically throw an error in the beginning we do not want to the else, because when the app first loads there shouldnt be any photos do the file would not exist and it would cause the try from above to fail as well
+//            throw DataPersistenceError.fileDoesNotExist(fileName)
+//        }
         return persistedImages
-        
     }
     
     

@@ -24,18 +24,15 @@ class FavoritesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    
         favsViewInstance.fCollection.delegate = self
         favsViewInstance.fCollection.dataSource = self
         
         favsViewInstance.fCollection.register(FavsCell.self, forCellWithReuseIdentifier: "favCell")
 //    favsViewInstance.fCollection.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "favCell")
        // favsViewInstance.fCollection.register(UINib(nibName: "favCell", bundle: nil), forCellWithReuseIdentifier: "favCell")
-        
-          
         loadPersistedStuff()
-
     }
+    
     
     private func loadPersistedStuff(){
         do {
@@ -45,9 +42,6 @@ class FavoritesViewController: UIViewController {
             print("errors: \(error)")
         }
     }
-    
-    
-    
 }
 
 extension FavoritesViewController: UICollectionViewDataSource{

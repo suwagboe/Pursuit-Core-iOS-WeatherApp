@@ -141,7 +141,6 @@ extension WeatherController: UITextFieldDelegate {
         //assign userEnteredText
         userEnteredText = enteredText
         
-        
         UserSettings.shared.saveZipcode(with: enteredText)
         textField.resignFirstResponder()
         return true
@@ -182,11 +181,11 @@ extension WeatherController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let maxSize: CGSize = UIScreen.main.bounds.size
-        
-        let itemWidth: CGFloat = maxSize.width * 0.95 // it is 95 percent of the device
-        
-        return CGSize(width: itemWidth, height: 150)
+     let maxSize: CGSize = UIScreen.main.bounds.size
+          
+          let itemWidth: CGFloat = maxSize.width * 0.95 // it is 95 percent of the device
+          
+          return CGSize(width: itemWidth, height: 150)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
