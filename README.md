@@ -1,7 +1,7 @@
-# Pursuit-Core-iOS-WeatherApp
+# WeatherApp 
 Weather app allows the user to enter a zipcode then displays the 7-day forecast. 
 
-# Weather App
+## Weather App Lab work
 
 # Overview
 

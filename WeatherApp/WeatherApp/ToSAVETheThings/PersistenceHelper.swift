@@ -26,9 +26,7 @@ class PersistenceHelper {
     
     //the place it should be stored...
     static let fileName = "images.plist"
-    
     // CRUD method
-    
     //MARK: why are things marked private static func again??
     private static func saveHeartedImage() throws{
         // we are only saving it because someone has heart it...
@@ -46,8 +44,7 @@ class PersistenceHelper {
     static func savePhotoTothePersisenceArrayAbove(photo: FavPhoto) throws{
         
         // before using the persistedImages arrays we first make sure that we are using the most updated saved data
-        
-        _ = try loadPersistedPhotos() // this is the try that would fail should the else below still be used. 
+        _ = try loadPersistedPhotos() // this is the try that would fail should the else below still be used.
         persistedImages.append(photo)
         do{
             try saveHeartedImage()
@@ -76,7 +73,5 @@ class PersistenceHelper {
 //        }
         return persistedImages
     }
-    
-    
-    
+
 }
